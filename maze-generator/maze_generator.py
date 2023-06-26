@@ -9,8 +9,8 @@ cols,rows = WIDTH // TILE, HEIGHT // TILE
 
 pygame.init()
 
-sc = pygame.display.set_mode(RES)
-clock = pygame.time.Clock()
+sc          = pygame.display.set_mode(RES)
+clock       = pygame.time.Clock()
 
 class Cell: 
     def __init__(self,x,y): 
@@ -51,10 +51,10 @@ class Cell:
     def check_neighbors(self): 
         neighbors = []
 
-        top = self.check_cell(self.x, self.y-1)
-        right = self.check_cell(self.x + 1, self.y)
-        bottom = self.check_cell(self.x, self.y + 1)
-        left = self.check_cell(self.x -1, self.y)
+        top     = self.check_cell(self.x, self.y-1)
+        right   = self.check_cell(self.x + 1, self.y)
+        bottom  = self.check_cell(self.x, self.y + 1)
+        left    = self.check_cell(self.x -1, self.y)
 
         if top and not top.visited: 
             neighbors.append(top)
@@ -86,10 +86,10 @@ def remove_walls(current, next):
         current.walls['bottom'] = False
         next.walls['top'] = False
 
-grid_cells = [Cell(col, row) for row in range(rows) for col in range(cols)]
-current_cell = grid_cells[0]
-stack = []
-colors, color = [], 40
+grid_cells          = [Cell(col, row) for row in range(rows) for col in range(cols)]
+current_cell        = grid_cells[0]
+stack               = []
+colors, color       = [], 40
 
 while True: 
     sc.fill(pygame.Color('black'))
