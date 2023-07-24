@@ -110,7 +110,7 @@ while True:
     if next_cell: 
         next_cell.visited = True
         stack.append(current_cell)
-        colors.append((min(color,255),90,150))
+        colors.append( (current_cell.x * 255 * TILE/ WIDTH, ((current_cell.x + current_cell.y)/2) * (255 * TILE/ WIDTH), current_cell.y * 255 * TILE / HEIGHT))
         color += 1
         remove_walls(current_cell,next_cell) 
         current_cell = next_cell
