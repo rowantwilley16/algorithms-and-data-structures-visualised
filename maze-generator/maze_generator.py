@@ -1,5 +1,7 @@
 import pygame
+import random
 from random import choice
+
 
 RES = WIDTH, HEIGHT = 500, 500
 
@@ -25,14 +27,15 @@ class Cell:
     def draw_current_cell(self): 
         x = self.x * TILE 
         y =  self.y *TILE
-        pygame.draw.rect(sc, choice([pygame.Color('deeppink'),pygame.Color('deeppink') ]) , (x + 2, y + 2, TILE-2, TILE-2)) 
+
+        pygame.draw.rect(sc, choice([pygame.Color('white'), pygame.Color('white')]), (x + 2, y + 2, TILE-2, TILE-2)) 
         
     def draw(self): 
         x = self.x * TILE 
         y = self.y * TILE
 
         if (self.visited): 
-            pygame.draw.rect(sc,pygame.Color('lightblue1'), (x,y, TILE, TILE))    
+            pygame.draw.rect(sc,pygame.Color('white'), (x,y, TILE, TILE))    
         if self.walls['top']: 
             pygame.draw.line(sc,pygame.Color('black'), (x,y),(x + TILE,y),2) 
         if self.walls['right']: 
@@ -89,7 +92,8 @@ def remove_walls(current, next):
 grid_cells          = [Cell(col, row) for row in range(rows) for col in range(cols)]
 current_cell        = grid_cells[0]
 stack               = []
-colors, color       = [], 40
+colors, color       = [], 100
+color_r, color_g, color_b = 100, 100, 100
 
 while True: 
     sc.fill(pygame.Color('black'))
@@ -110,8 +114,23 @@ while True:
     if next_cell: 
         next_cell.visited = True
         stack.append(current_cell)
-        colors.append( (current_cell.x * 255 * TILE/ WIDTH, ((current_cell.x + current_cell.y)/2) * (255 * TILE/ WIDTH), current_cell.y * 255 * TILE / HEIGHT))
-        color += 1
+        colors.append( pygame.Color(color_r,color_g,color_b))
+        if color_r >= 255: 
+            color_r = 100
+        else: 
+            color_r = random.randint(50,150)
+
+        if color_g >= 255: 
+            color_g = 100
+        else: 
+            color_g = random.randint(50,150)
+        
+        if color_b >= 255: 
+            color_b = 100
+        else: 
+            color_b = random.randint(50,150)
+        
+
         remove_walls(current_cell,next_cell) 
         current_cell = next_cell
     elif stack: 
