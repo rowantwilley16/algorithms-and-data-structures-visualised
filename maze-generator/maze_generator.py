@@ -2,6 +2,7 @@ import pygame
 import random
 from random import choice
 
+# Maze Size
 RES = WIDTH, HEIGHT = 1000, 1000
 
 TILE = 20
