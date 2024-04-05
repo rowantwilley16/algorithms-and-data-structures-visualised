@@ -2,7 +2,7 @@ import pygame
 import random
 from random import choice
 
-RES = WIDTH, HEIGHT = 500, 500
+RES = WIDTH, HEIGHT = 1000, 1000
 
 TILE = 20
 
